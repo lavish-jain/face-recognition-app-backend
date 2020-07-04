@@ -1,5 +1,6 @@
 const signin = require('./services/signin');
 const register = require('./services/register');
+const getProfile = require('./services/getProfile');
 
 const signinController = (req, res) => {
     if(!req.body.email || !req.body.password) {
@@ -21,7 +22,14 @@ const registerController = (req, res) => {
     return;
 }
 
+const profileController = (req, res) => {
+    const id = req.params.id;
+    const {status, response} = getProfile(id);
+    res.status(status).json(response);
+}
+
 module.exports = {
     signinController,
     registerController,
+    profileController,
 }
