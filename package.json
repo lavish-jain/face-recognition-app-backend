@@ -1,0 +1,15 @@
+{
+  "name": "facerecognitionappbackend",
+  "version": "1.0.0",
+  "description": "Backend for face recognition app",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js"
+  },
+  "author": "Lavish Jain",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
