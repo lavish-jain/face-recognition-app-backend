@@ -1,6 +1,7 @@
 const signin = require('./services/signin');
 const register = require('./services/register');
 const getProfile = require('./services/getProfile');
+const increamentEntries = require('./services/increamentEntries');
 
 const signinController = (req, res) => {
     if(!req.body.email || !req.body.password) {
@@ -28,8 +29,20 @@ const profileController = (req, res) => {
     res.status(status).json(response);
 }
 
+const imageController = (req, res) => {
+    const {id} = req.body;
+    let {status, response} = getProfile(id);
+    if(status === 200) {
+        const r = increamentEntries(response);
+        status = r.status;
+        response = r.response;
+    }
+    res.status(status).json(response);
+}
+
 module.exports = {
     signinController,
     registerController,
     profileController,
+    imageController,
 }

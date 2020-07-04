@@ -10,5 +10,6 @@ router.get('/', (req, res) => {
 router.post('/signin', controller.signinController);
 router.post('/register', controller.registerController);
 router.get('/profile/:id', controller.profileController);
+router.put('/image', controller.imageController)
 
 module.exports = router;
