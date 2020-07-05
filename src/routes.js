@@ -1,15 +1,21 @@
 const express = require('express');
 const controller = require('./controller');
 
-const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.json(database.users);
-})
 
-router.post('/signin', controller.signinController);
-router.post('/register', controller.registerController);
-router.get('/profile/:id', controller.profileController);
-router.put('/image', controller.imageController)
+const routes = option => {
+    const router = express.Router();
+    router.post('/signin', wrapperFunc(option, controller.signinController));
+    router.post('/register', wrapperFunc(option, controller.registerController));
+    router.get('/profile/:id', wrapperFunc(option, controller.profileController));
+    router.put('/image', wrapperFunc(option, controller.imageController));
+    return router;
+}
 
-module.exports = router;
+const wrapperFunc = (option, func) => {
+    return (req, res) => {
+        func(option, req, res);
+    };
+}
+
+module.exports = routes;

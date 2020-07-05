@@ -1,6 +1,6 @@
-const getProfile = async (id) => {
+const getProfile = async (db, id) => {
     try {
-        const user = await dbConnection('users').where('id', id);
+        const user = await db('users').where('id', id);
         if (user.length) {
             return { status: 200, response: user[0] };
         }

@@ -2,13 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const knex = require('knex');
+const bcrypt = require('bcrypt-nodejs');
 
 const router = require('./routes');
 
 const app = express();
 const PORT = 3001;
 
-global.dbConnection = knex({
+db = knex({
     client: 'pg',
     connection: {
         host: '127.0.0.1',
@@ -23,7 +24,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(helmet());
 
-app.use('/', router);
+const options = {
+    db,
+    bcrypt,
+}
+app.use('/', router(options));
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);

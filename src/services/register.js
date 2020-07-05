@@ -1,4 +1,4 @@
-const register = async (name, email, hash) => {
+const register = async (db, name, email, hash) => {
     const user = {
         name,
         email,
@@ -9,7 +9,7 @@ const register = async (name, email, hash) => {
         hash,
     }
     try {
-        const registeredUser = await dbConnection.transaction(async (trx) => {
+        const registeredUser = await db.transaction(async (trx) => {
             try {
                 const regUser = await trx.insert(user).into('users').returning('*');
                 await trx.insert(login).into('login').returning('*');
