@@ -8,7 +8,7 @@ const Clarifai = require('clarifai');
 const router = require('./routes');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const clarifai = new Clarifai.App({ apiKey: 'api_key' })
 const model = Clarifai.FACE_DETECT_MODEL;
