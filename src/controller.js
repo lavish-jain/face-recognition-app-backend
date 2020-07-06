@@ -2,6 +2,7 @@ const signin = require('./services/signin');
 const register = require('./services/register');
 const getProfile = require('./services/getProfile');
 const incrementEntries = require('./services/incrementEntries');
+const predictFace = require('./services/predictFace');
 
 const signinController = async (option, req, res) => {
     const { db, bcrypt } = option;
@@ -49,6 +50,13 @@ const imageController = async (option, req, res) => {
     res.status(status).json(response);
 }
 
+const predictFaceController = async (option, req, res) => {
+    const { clarifai, model } = option;
+    const { image_url } = req.body;
+    const { status, response } = await predictFace(clarifai, model, image_url);
+    res.status(status).json(response);
+}
+
 const hashPassword = (password, bcrypt) => {
     return bcrypt.hashSync(password);
 }
@@ -58,4 +66,5 @@ module.exports = {
     registerController,
     profileController,
     imageController,
+    predictFaceController,
 }

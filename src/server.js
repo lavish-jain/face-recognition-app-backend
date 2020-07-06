@@ -3,18 +3,22 @@ const cors = require('cors');
 const helmet = require('helmet');
 const knex = require('knex');
 const bcrypt = require('bcrypt-nodejs');
+const Clarifai = require('clarifai');
 
 const router = require('./routes');
 
 const app = express();
 const PORT = 3001;
 
+const clarifai = new Clarifai.App({ apiKey: 'api_key' })
+const model = Clarifai.FACE_DETECT_MODEL;
+
 db = knex({
     client: 'pg',
     connection: {
         host: '127.0.0.1',
-        user: 'your_username',
-        password: 'your_password',
+        user: 'user',
+        password: 'password',
         database: 'face-recognition-app-db'
     }
 });
@@ -27,6 +31,8 @@ app.use(helmet());
 const options = {
     db,
     bcrypt,
+    clarifai,
+    model,
 }
 app.use('/', router(options));
 
