@@ -16,7 +16,7 @@ const model = Clarifai.FACE_DETECT_MODEL;
 db = knex({
     client: 'pg',
     connection: {
-        host: process.env.DATABASE_URL,
+        host: process.env.DATABASE_URL || 'localhost:5432',
         ssl: true,
     }
 });
