@@ -8,6 +8,8 @@ const Clarifai = require('clarifai');
 const router = require('./routes');
 
 const app = express();
+app.use(cors());
+
 const PORT = process.env.PORT || 3001;
 
 const clarifai = new Clarifai.App({ apiKey: process.env.API_KEY })
@@ -23,7 +25,6 @@ db = knex({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 app.use(helmet());
 
 const options = {
