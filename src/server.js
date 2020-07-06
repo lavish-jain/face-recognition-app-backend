@@ -10,7 +10,7 @@ const router = require('./routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const clarifai = new Clarifai.App({ apiKey: 'api_key' })
+const clarifai = new Clarifai.App({ apiKey: process.env.API_KEY })
 const model = Clarifai.FACE_DETECT_MODEL;
 
 db = knex({
