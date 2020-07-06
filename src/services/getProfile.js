@@ -6,7 +6,6 @@ const getProfile = async (db, id) => {
         }
         return { status: 404, response: 'User not found' }
     } catch (err) {
-        console.log(err);
         return { status: 500, response: 'Error Fetching Profile' }
     }
 }
