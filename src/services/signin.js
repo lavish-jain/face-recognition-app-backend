@@ -14,6 +14,7 @@ const signin = async (db, bcrypt, email, password) => {
             return { status: 400, response: 'User not found' }
         }
     } catch (err) {
+        console.error(err)
         return { status: 500, response: 'Error signing in' }
     }
 }
