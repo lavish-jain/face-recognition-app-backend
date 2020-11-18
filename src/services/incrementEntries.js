@@ -4,7 +4,7 @@ const incrementEntries = async (db, id) => {
         return { status: 200, response: user[0] };
     } catch (err) {
         console.error(err);
-        return { status: 500, response: 'Error incrementing' }
+        return { status: 500, response: err }
     }
 }
 

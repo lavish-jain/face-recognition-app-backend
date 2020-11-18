@@ -15,7 +15,7 @@ const signin = async (db, bcrypt, email, password) => {
         }
     } catch (err) {
         console.error(err)
-        return { status: 500, response: 'Error signing in' }
+        return { status: 500, response: err }
     }
 }
 

@@ -4,7 +4,7 @@ const predictFace = async (app, model, imageUrl) => {
         return { status: 200, response };
     } catch (err) {
         console.error(err);
-        return { status: 500, response: 'Error getting face' };
+        return { status: 500, response: err };
     }
 }
 

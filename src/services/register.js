@@ -23,7 +23,7 @@ const register = async (db, name, email, hash) => {
         return { status: 201, response: registeredUser };
     } catch (err) {
         console.error(err);
-        return { status: 400, response: 'Email already registered' };
+        return { status: 400, response: err };
     }
 }
 
