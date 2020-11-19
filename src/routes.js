@@ -1,6 +1,6 @@
 const express = require('express');
 const controller = require('./controller');
-
+const appInsights = require('applicationinsights');
 
 
 const routes = option => {
@@ -14,6 +14,11 @@ const routes = option => {
 }
 
 const wrapperFunc = (option, func) => (req, res) => {
+    // Integrating knex with app insights    
+    const originalQuery = option.db.client.query;
+    const localKnex = option.db.withUserParams();
+    localKnex.client.query = appInsights.wrapWithCorrelationContext(originalQuery);
+    option.db = localKnex;
     func(option, req, res);
 }
 
