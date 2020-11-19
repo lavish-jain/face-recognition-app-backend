@@ -2,6 +2,8 @@ const appInsights = require('applicationinsights');
 appInsights.setup()
     .setSendLiveMetrics(true);
 appInsights.start();
+telemetryClient = appInsights.defaultClient;
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -41,6 +43,7 @@ try {
         bcrypt,
         clarifai,
         model,
+        telemetryClient,
     }
     app.use('/', router(options));
 
@@ -48,5 +51,6 @@ try {
         console.log(`Server listening on port ${PORT}`);
     });
 } catch(err) {
+    telemetryClient.trackException({exception: err});
     console.log(err);
 }
