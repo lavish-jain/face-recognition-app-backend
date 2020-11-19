@@ -15,9 +15,8 @@ const routes = option => {
 
 const wrapperFunc = (option, func) => (req, res) => {
     // Integrating knex with app insights    
-    const originalQuery = option.db.client.query;
     const localKnex = option.db.withUserParams();
-    localKnex.client.query = appInsights.wrapWithCorrelationContext(originalQuery);
+    localKnex.client.query = appInsights.wrapWithCorrelationContext(option.dbQueryFunc);
     option.db = localKnex;
     func(option, req, res);
 }

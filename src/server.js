@@ -33,6 +33,8 @@ try {
         }
     });
 
+    const dbQueryFunc = db.client.query.bind(db.client);
+
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cors());
@@ -40,6 +42,7 @@ try {
 
     const options = {
         db,
+        dbQueryFunc,
         bcrypt,
         clarifai,
         model,
