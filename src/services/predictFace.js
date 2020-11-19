@@ -1,4 +1,4 @@
-const predictFace = async (app, model, imageUrl) => {
+const predictFace = async (app, model, telemetryClient, imageUrl) => {
     try {
         const response = await app.models.predict(model, imageUrl);
         return { status: 200, response };

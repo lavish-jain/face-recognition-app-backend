@@ -1,4 +1,4 @@
-const signin = async (db, bcrypt, email, password) => {
+const signin = async (db, bcrypt, telemetryClient, email, password) => {
     try {
         const matchedUser = await db('login').where('email', email).returning('*');
         if (matchedUser.length) {

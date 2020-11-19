@@ -1,4 +1,4 @@
-const register = async (db, name, email, hash) => {
+const register = async (db, telemetryClient, name, email, hash) => {
     const user = {
         name,
         email,

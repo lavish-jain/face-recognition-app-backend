@@ -1,4 +1,4 @@
-const incrementEntries = async (db, id) => {
+const incrementEntries = async (db, telemetryClient, id) => {
     try {
         const user = await db('users').where('id', id).increment('entries', 1).returning('*');
         return { status: 200, response: user[0] };

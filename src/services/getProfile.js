@@ -1,4 +1,4 @@
-const getProfile = async (db, id) => {
+const getProfile = async (db, telemetryClient, id) => {
     try {
         const user = await db('users').where('id', id);
         if (user.length) {
