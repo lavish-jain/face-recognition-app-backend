@@ -1,5 +1,5 @@
 const appInsights = require('applicationinsights');
-appInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY)
+appInsights.setup()
     .setSendLiveMetrics(true);
 appInsights.start();
 const express = require('express');
