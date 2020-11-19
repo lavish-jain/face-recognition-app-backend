@@ -1,3 +1,7 @@
+const appInsights = require('applicationinsights');
+appInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY)
+    .setSendLiveMetrics(true);
+appInsights.start();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
